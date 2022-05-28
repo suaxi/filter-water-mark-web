@@ -1,4 +1,5 @@
 # filter-water-mark-web
+Vue2 Vant2
 
 ## Project setup
 ```
