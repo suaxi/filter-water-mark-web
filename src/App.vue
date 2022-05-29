@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <FilterWaterMark/>
+    <Home/>
   </div>
 </template>
 
 <script>
-import FilterWaterMark from './components/FilterWaterMark'
+import Home from './components/Home'
 
 export default {
   name: 'App',
   components: {
-    FilterWaterMark
+    Home
   }
 }
 </script>

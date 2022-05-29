@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import {Button, Field, Toast, Notify, Tag, Divider, Loading} from 'vant';
+import {Button, Divider, Field, Loading, Notify, Tag, Toast} from 'vant';
 import Clipboard from 'clipboard';
 
 Vue.use(Button);
