@@ -1,14 +1,27 @@
 <template>
   <div v-title data-title="视频去水印">
     <van-cell-group>
-      <van-field v-model="url" label="视频链接" placeholder="请输入链接地址"/>
+      <van-field
+          v-model="url"
+          clearable
+          label="视频链接"
+          left-icon="edit"
+          placeholder="请输入链接地址"/>
     </van-cell-group>
     <van-button type="primary" v-show="false">粘贴</van-button>
     <van-button type="info" size="small" @click="download(url)">下载</van-button>
+    <van-loading size="24px" vertical v-show="isLoading">加载中...</van-loading>
     <div v-show="result">
-      <van-divider />
-      <van-tag type="success">下载地址:</van-tag>
-      <p>{{result}}</p>
+      <van-divider/>
+      <van-tag type="success">无水印视频地址:</van-tag>
+      <van-field
+          v-model="result"
+          rows="1"
+          autosize
+          label=""
+          type="textarea"
+          placeholder=""
+      />
     </div>
   </div>
 </template>
@@ -22,6 +35,7 @@ export default {
   data() {
     return {
       url: '',
+      isLoading: '',
       result: ''
     }
   },
@@ -32,15 +46,19 @@ export default {
         return;
       }
       let downloadURL = val.replaceAll("%", "");
+      this.isLoading = true;
       axios.post(`api/filterWaterMark?url=${downloadURL}`).then(
           response => {
-            Notify({ type: 'success', message: '请求成功' });
-            setTimeout((this.result = response.data.videos[0].url), 1000)
+            this.isLoading = false;
+            Notify({type: 'success', message: '请求成功'});
+            this.result = response.data.videos[0].url
           },
           error => {
-            Notify({ type: 'danger', message: error.response.data.message });
+            this.isLoading = false;
+            Notify({type: 'danger', message: error.response.data.message});
           }
-      )
+      );
+      this.url = ''
     }
   }
 }
