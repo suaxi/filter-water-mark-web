@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import App from './App.vue';
-import {Button, Field, Cell, CellGroup, Toast, Notify, Tag, Divider, Loading} from 'vant';
+import {Button, Field, Toast, Notify, Tag, Divider, Loading} from 'vant';
+import Clipboard from 'clipboard';
 
 Vue.use(Button);
 Vue.use(Field);
-Vue.use(Cell);
-Vue.use(CellGroup);
 Vue.use(Toast);
 Vue.use(Notify);
 Vue.use(Tag);
@@ -18,6 +17,7 @@ Vue.directive('title', {
         document.title = app.dataset.title
     }
 })
+Vue.prototype.Clipboard = Clipboard
 
 new Vue({
     render: h => h(App),
