@@ -12,7 +12,7 @@
     />
 
     <van-button type="primary" v-show="false">粘贴</van-button>
-    <van-button type="info" size="small" @click="download(url)">下载</van-button>
+    <van-button type="info" size="small" @click="download(url)">解析</van-button>
 
     <van-loading size="24px" vertical v-show="isLoading">加载中...</van-loading>
 
@@ -38,6 +38,14 @@
           @click="copyResult"
       >
         复制
+      </van-button>
+      <van-button
+          plain
+          type="primary"
+          size="mini"
+          @click="saveVideo"
+      >
+        新窗口保存
       </van-button>
     </div>
   </div>
@@ -89,6 +97,9 @@ export default {
         Toast.fail('复制到剪贴板失败');
         clipboard.destroy();
       });
+    },
+    saveVideo() {
+      window.open(this.result, '_self', 'noopener=yes,noreferrer=yes')
     }
   }
 }
